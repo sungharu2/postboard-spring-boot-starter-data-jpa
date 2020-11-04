@@ -15,8 +15,8 @@ public class PostController {
 	PostRepository postRepository;
 	
 	@GetMapping("/")
-	public String hello() {
-		return "Main Page";
+	public String list() {
+		return "example/list.html";
 	}
 	
 	@GetMapping("/post")

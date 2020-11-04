@@ -11,6 +11,7 @@ import com.example.application.entity.Post;
 import com.example.application.repository.CommentRepository;
 import com.example.application.repository.PostRepository;
 
+@RestController
 public class CommentController {
 	@Autowired
 	PostRepository postRepository;
@@ -43,11 +44,12 @@ public class CommentController {
 		newComment.setTitle(comment.getTitle());
 		newComment.setContent(comment.getContent());
 		newComment.setWriter(comment.getWriter());
+		commentRepository.save(newComment);
 		return newComment;
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/post/{id}/comment")
+	@DeleteMapping("/post/{id}/comment/{commentID}")
 	public String deleteComment(@PathVariable Long id, @PathVariable Long commentID) {
 		commentRepository.deleteById(commentID);
 		return "Comment Delete Success";
