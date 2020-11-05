@@ -14,9 +14,8 @@ public class Post {
 	private Long id;
 	
 	private String title;
-	private String content;
-	
 	private String writer;
+	private String content;
 	
 	
 	public Long getId() {
@@ -35,20 +34,20 @@ public class Post {
 		this.title = title;
 	}
 	
-	public String getContent() {
-		return content;
-	}
-	
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
 	public String getWriter() {
 		return writer;
 	}
 	
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	@Override
@@ -58,12 +57,12 @@ public class Post {
 		Post post = (Post) o;
 		return Objects.equals(id, post.id) &&
 				Objects.equals(title, post.title) &&
-				Objects.equals(content, post.content) &&
-				Objects.equals(writer, post.writer);
+				Objects.equals(writer, post.writer) &&
+				Objects.equals(content, post.content);
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, title, content, writer);
+		return Objects.hash(id, title, writer, content);
 	}
 }

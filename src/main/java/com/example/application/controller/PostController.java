@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.application.entity.Post;
@@ -14,10 +15,6 @@ public class PostController {
 	@Autowired
 	PostRepository postRepository;
 	
-	@GetMapping("/")
-	public String list() {
-		return "example/list.html";
-	}
 	
 	@GetMapping("/post")
 	public List<Post> getAllPost() {
@@ -47,8 +44,8 @@ public class PostController {
 		return post.get();
 	}
 	
-	@PutMapping("/post")
-	public Post createPost(@RequestBody Post post) {
+	@PostMapping("/post")
+	public Post createPost(Post post) {		// html에서 json form으로 데이터를 주지 않음, @RequestBody 어노테이션 사용 안 해야 인식
 		Post newPost = postRepository.save(post);
 		
 		return newPost;
