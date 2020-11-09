@@ -1,65 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <link rel="stylesheet" th:href="@{/css/board.css}">
+<meta charset="UTF-8">
+<meta name="Content-Type" content="text/html;charset=utf-8" />
+<title>게시판 프로젝트</title>
 </head>
 <body>
-<!-- header 추가 -->
-<div th:insert="common/header.html" id="header"></div>
+<h1>게시글 목록</h1>
+	<table class="table">
+		<thead>
+		<tr>
+			<th class="one wide">번호</th>
+			<th class="ten wide">제목</th>
+			<th class="two wide">작성자</th>
+			<th class="three wide">작성일</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<!-- contents -->
+		<tr >
+			<td>1</td>
+			<td>안녕</td>
+			<td>cth</td>
+			<td>2020-11-09</td>
+		</tr>
+		</tbody>
+	</table>
+<br/>
 
-<div id="wrap">
-    <a th:href="@{/post}">글쓰기</a>
+<!-- 글 세부 내용  -->
+<h1>게시글 내용</h1>
+	<table class="table">
+		<tr>
+			<td>번호</td>
+			<td>1</td>
+			<td>안녕</td>
+			<td>작성자</td>
+			<td>cth</td>
+			<td>작성일</td>
+			<td>2020-11-09</td>
+		</tr>
+		<tr>
+			<td>content</td>
+		</tr>
+	</table>
 
-    <form action="/board/search" method="GET">
-        <div class="search">
-            <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-        </div>
+<br/>
 
-        <button>검색하기</button>
-    </form>
+<!-- 입력 폼 -->
+<h1>게시글 작성</h1>
 
-    <table>
-        <thead>
-        <tr>
-            <th class="one wide">번호</th>
-            <th class="ten wide">글제목</th>
-            <th class="two wide">작성자</th>
-            <th class="three wide">작성일</th>
-        </tr>
-        </thead>
+<form action="/post" method="post">
+제목:	<input type="text" name="title" /><br/>
+작성자: <input type="text" name="writer" /><br/>
+<textarea name="content" placeholder="내용"></textarea><br>
+<input type="submit" />
+</form>
 
-        <tbody>
-        <!-- CONTENTS !-->
-        <tr th:each="board : ${boardList}">
-            <td>
-                <span th:text="${board.id}"></span>
-            </td>
-            <td>
-                <a th:href="@{'/post/' + ${board.id}}">
-                    <span th:text="${board.title}"></span>
-                </a>
-            </td>
-            <td>
-                <span th:text="${board.writer}"></span>
-            </td>
-            <td>
-                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div>
-    <span th:each="pageNum : ${pageList}" th:inline="text">
-        <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-    </span>
-    </div>
-</div>
-
-<!-- footer 추가 -->
-<div th:insert="common/footer.html" id="footer"></div>
 </body>
 </html>
