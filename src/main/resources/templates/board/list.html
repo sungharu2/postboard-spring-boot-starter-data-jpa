@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="Content-Type" content="text/html;charset=utf-8" />
 <title>게시판 프로젝트</title>
+<link rel="stylesheet" th:href="@{/css/board.css}">
 </head>
 <body>
 <h1>게시글 목록</h1>
@@ -19,11 +20,22 @@
 		
 		<tbody>
 		<!-- contents -->
-		<tr >
-			<td>1</td>
-			<td>안녕</td>
-			<td>cth</td>
-			<td>2020-11-09</td>
+		<tr th:each="board : ${boardList}">
+			<td>
+				<!-- 게시글 ID -->
+				<span th:text="${board.id}"></span>
+			</td>
+			<td>
+				<a th:href="@{'/post/' + ${board.id}}">
+					<span th:text="${board.title}"></span>
+				</a>
+			</td>
+			<td>
+				<span th:text="${board.writer}"></span>
+			</td>
+			<td>
+				<span th:text="${#temproals.format(board.createdDate, 'yy-MM-dd HH:mm')}"></span>
+			</td>
 		</tr>
 		</tbody>
 	</table>
