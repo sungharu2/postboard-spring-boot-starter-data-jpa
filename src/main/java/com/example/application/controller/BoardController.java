@@ -22,7 +22,7 @@ public class BoardController {
 	public String list(Model model) {
 		List<BoardDto> postList = boardService.getBoardList();
 		
-		model.addAttribute("postList", postList);
+		model.addAttribute("boardList", postList);
 		return "board/list.html";
 	}
 
